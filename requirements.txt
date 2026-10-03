@@ -1,0 +1,19 @@
+# Pinned on purpose.
+# models/ranker.joblib is a pickle of scikit-learn + xgboost objects: if the host installs a
+# different version, loading it fails, the notebook models are skipped and only the baseline
+# shows up in the sidebar. These are the exact versions the models were built with.
+streamlit==1.64.0
+pandas==3.0.6
+numpy==2.4.6
+scikit-learn==1.9.1
+scipy==1.17.1
+joblib==1.6.0
+xgboost==3.2.0
+rapidfuzz==3.14.6
+matplotlib==3.11.2
+seaborn==0.13.2
+
+# Optional: only for the notebook's SBERT text block and the best free-text themes.
+# Without it the app uses the notebook's TF-IDF + SVD fallback (the shipped models were built
+# that way, so leaving this out is what makes the shipped files match).
+# sentence-transformers

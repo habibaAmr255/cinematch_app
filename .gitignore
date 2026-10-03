@@ -1,0 +1,34 @@
+__pycache__/
+*.pyc
+.venv/
+
+# Accounts, favorites and watched lists: a local SQLite file, created on first run.
+# On a host the container starts with an empty one (see "Deploying" in the README).
+data/app.db
+
+# The two notebook exports that nothing in the app reads:
+# E_hybrid.npy is rebuilt from blocks.npz x weights at load time, labels.csv is unused.
+# scripts/build_ml_models.py regenerates both, so keep them out of the repo.
+models/E_hybrid.npy
+models/labels.csv
+
+# The backups the ML / chatbot integration left behind
+_backup_*/
+
+# ---------------------------------------------------------------------------------------------
+# The files below ARE committed on purpose - the deployed app needs them:
+#   models/blocks.npz            53.8 MB
+#   models/fitted.joblib         67.9 MB   (fusion weights + the free-text projector)
+#   models/ranker.joblib         10.8 MB   (the trained XGBoost + stack)
+#   models/tfidf_baseline.joblib 21.2 MB   (cache; without it the app refits TF-IDF on first run)
+#   models/app_meta.pkl           1.6 MB   (row-order check)
+#   models/ok_mask.npy            <0.1 MB
+#   data/movies_clean.csv.gz     15.3 MB
+# Every one of them is under GitHub's 100 MB per-file limit, so no Git LFS is needed.
+# Larger artifacts would need Git LFS or an external download at startup.
+# ---------------------------------------------------------------------------------------------
+
+.agents/
+.claude/
+.env
+.streamlit/secrets.toml
